@@ -45,3 +45,9 @@ function unflip() {
 for (let i = 0; i < card.length; i++) {
     card[i].addEventListener("click", flip);
 }
+
+function random() {
+    for (let i = 0; i < card.length; i++) {
+        card[i].style.order = Math.floor((Math.random() * cad.length));
+    }
+}
