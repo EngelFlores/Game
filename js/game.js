@@ -1,6 +1,7 @@
 let card = document.getElementsByClassName("contentcard__cards");
 let firstCard = null
 let secondCard = null
+// let cardsList = require('./cards.js')
 
 function disable() {
     if (firstCard != null && secondCard != null) {
@@ -14,7 +15,6 @@ function disable() {
             setTimeout(unflip, 1000);
         }
     }
-
 }
 
 function clearSelectedCards() {
@@ -33,7 +33,6 @@ function flip() {
     }
     this.classList.toggle("card--flip");
     disable();
-
 }
 
 function unflip() {
@@ -48,6 +47,7 @@ for (let i = 0; i < card.length; i++) {
 
 function random() {
     for (let i = 0; i < card.length; i++) {
-        card[i].style.order = Math.floor((Math.random() * cad.length));
+        card[i].style.order = Math.floor((Math.random() * card.length));
     }
 }
+random()
