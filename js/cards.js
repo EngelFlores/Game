@@ -151,4 +151,3 @@ const images = [
 		cardIdentifier: "frog",
 	}
 ];
-

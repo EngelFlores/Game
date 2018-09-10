@@ -39,6 +39,9 @@
     border-radius: 15px;
     border: 2px solid;
 }
+.newgamebutton{
+    
+}
 @media (max-width: 500px){
 body{
     margin:20px;
