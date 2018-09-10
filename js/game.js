@@ -1,17 +1,17 @@
 let card = document.getElementsByClassName("contentcard__cards");
 let firstCard = null
 let secondCard = null
-let rightCardGeneral = 0
+let scoreGeneral = 0
 let activePlayer = 1
 let player1 = {
     description: 'Player 1',
     rounds: 0,
-    rightCard: 0
+    score: 0
 }
 let player2 = {
     description: 'Player 2',
     rounds: 0,
-    rightCard: 0,
+    score: 0,
 }
 let winner = ""
 // let cardsList = require('./cards.js')
@@ -20,8 +20,8 @@ function checkForMatch(player) {
     if (firstCard != null && secondCard != null) {
         if (firstCard.dataset.card == secondCard.dataset.card) {
             disableCards()
-            rightCardGeneral++
-            player.rightCard++
+            scoreGeneral++
+            player.score++
             clearSelectedCards();
         } else {
             setTimeout(unflip, 1000);
@@ -29,19 +29,19 @@ function checkForMatch(player) {
         player.rounds++
         changePlayer()
     }
-    document.getElementById("rounds1").innerHTML = "Jogadas Player 1: " + player1.rounds;
-    document.getElementById("rounds2").innerHTML = "Jogadas Player 2: " + player2.rounds;
-    document.getElementById("rightCard1").innerHTML = "Acertos Player 1: " + player1.rightCard;
-    document.getElementById("rightCard2").innerHTML = "Acertos Player 2: " + player2.rightCard;
+    document.getElementById("roundsplayer1").innerHTML = "Jogadas Player 1: " + player1.rounds;
+    document.getElementById("roundsplayer2").innerHTML = "Jogadas Player 2: " + player2.rounds;
+    document.getElementById("scoreplayer1").innerHTML = "Acertos Player 1: " + player1.score;
+    document.getElementById("scoreplayer2").innerHTML = "Acertos Player 2: " + player2.score;
     console.log(player.description, player);
     checkWinner()
 }
 
 function checkWinner() {
-    if (rightCardGeneral == (card.length / 2)) {
-        if (player1.rightCard > player2.rightCard) {
+    if (scoreGeneral == (card.length / 2)) {
+        if (player1.score > player2.score) {
             winner = player1.description
-        } else if (player2.rightCard > player1.rightCard) {
+        } else if (player2.score > player1.score) {
             winner = player2.description
         } else {
             winner = "Empate"

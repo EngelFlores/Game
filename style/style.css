@@ -1,3 +1,7 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
 .card--flip {
     transform: rotateX(180deg);
 }
@@ -40,7 +44,14 @@
     border: 2px solid;
 }
 .newgamebutton{
-    
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    border-radius:10px;
+}
+.scoreboard{
+    padding-left: 15%;
+    padding-top: 15%;
 }
 @media (max-width: 500px){
 body{
@@ -52,7 +63,7 @@ body{
 }
 }
 @media(min-width: 1000px){
-body{
-    margin:200px;
+.contentcard{
+    margin:5% 15%;
 } 
 }
