@@ -14,7 +14,7 @@ let player2 = {
     score: 0,
 }
 let winner = ""
-// let cardsList = require('./cards.js')
+const cardsList = require('./cards')
 
 function checkForMatch(player) {
     if (firstCard != null && secondCard != null) {
@@ -33,7 +33,7 @@ function checkForMatch(player) {
     document.getElementById("roundsplayer2").innerHTML = "Jogadas Player 2: " + player2.rounds;
     document.getElementById("scoreplayer1").innerHTML = "Acertos Player 1: " + player1.score;
     document.getElementById("scoreplayer2").innerHTML = "Acertos Player 2: " + player2.score;
-    console.log(player.description, player);
+    // console.log(player.description, player);
     checkWinner()
 }
 
@@ -108,3 +108,27 @@ function changePlayer() {
         activePlayer = 1
     }
 }
+function cardBuilder(cardsList) {
+    let contentcard = document.createElement("div");
+    let contentcard__cards = document.createElement("div");
+    let contentcard__cards__img = document.createElement("img");
+    contentcard.appendChild(contentcard__cards);
+    contentcard__cards__img.classList.add("contentcard__cards__img")
+    contentcard__cards__img.setAttribute()
+}
+
+
+// function addElement() {
+//     // create a new div element 
+//     var newDiv = document.createElement("div");
+//     // and give it some content 
+//     var newContent = document.createTextNode("Hi there and greetings!");
+//     // add the text node to the newly created div
+//     newDiv.appendChild(newContent);
+
+//     // add the newly created element and its content into the DOM 
+//     var currentDiv = document.getElementById("div1");
+//     document.body.insertBefore(newDiv, currentDiv);
+// }
+
+// secondCard.classList.add("contentcard__cards--disabled")
