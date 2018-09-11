@@ -1,4 +1,4 @@
-module.exports = [
+export const cardsList = [
 	{
 		image: "images/051-bulldog.png",
 		cardTitle: "The Bulldog",

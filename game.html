@@ -10,16 +10,24 @@
 </head>
 
 <body>
-    <div class="scoreboard">
-        <button class="newgamebutton" onclick="newGame()">Novo Jogo</button>
-        <p id="winner"></p>
-        <p id="roundsplayer1"></p>
-        <p id="roundsplayer2"></p>
-        <p id="scoreplayer1"></p>
-        <p id="scoreplayer2"></p>
-        
+    <div class="contentnewgame">
+        <button class="contentnewgame__button" onclick="newGame()">Novo Jogo</button>
     </div>
-    <!-- <div class="contentcard">
+    <div class="scoreboard">
+        <div id="scoreboard__player1">
+            <p>Player 1</p>
+            <p id="roundsplayer1">Rodadas: 0</p>
+            <p id="scoreplayer1">Acertos: 0</p>
+        </div>
+        <div id="scoreboard__player2">
+            <p>Player 2</p>
+            <p id="roundsplayer2">Rodadas: 0</p>
+            <p id="scoreplayer2">Acertos: 0</p>
+        </div>
+    </div>
+    <p id="winner"></p>
+
+    <div class="contentcard">
         <div class="contentcard__cards" data-card="bulldog">
             <img src="images/doubt.png" alt="Doubt" class="contentcard__cards__img contentcard__cards--front">
             <img src="images/051-bulldog.png" alt="Bulldog" class="contentcard__cards__img contentcard__cards--back">
@@ -68,7 +76,7 @@
             <img src="images/doubt.png" alt="Doubt" class="contentcard__cards__img contentcard__cards--front">
             <img src="images/051-bulldog.png" alt="Bulldog" class="contentcard__cards__img contentcard__cards--back">
         </div>
-    </div> -->
+    </div>
 </body>
 <script src="js/game.js"></script>
 
