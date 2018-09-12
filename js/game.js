@@ -1,169 +1,14 @@
-// import {cardsList} from './cards.js';
-const cardsList = [
-    {
-        image: "images/051-bulldog.png",
-        cardTitle: "The Bulldog",
-        cardIdentifier: "bulldog",
-    },
-    {
-        image: "images/doubt.png",
-        cardTitle: "The Doubt",
-        cardIdentifier: "doubt",
-    },
-    {
-        image: "images/051-chameleon.png",
-        cardTitle: "The Chameleon",
-        cardIdentifier: "chameleon",
-    },
-    {
-        image: "images/051-cow.png",
-        cardTitle: "Cow",
-        cardIdentifier: "cow",
-    },
-    {
-        image: "images/051-hippopotamus.png",
-        cardTitle: "Hippopotamus",
-        cardIdentifier: "hippopotamus",
-    },
-    {
-        image: "images/051-monkey.png",
-        cardTitle: "Monkey",
-        cardIdentifier: "monkey",
-    },
-    {
-        image: "images/051-octopus.png",
-        cardTitle: "Octopus",
-        cardIdentifier: "octopus",
-    },
-    {
-        image: "images/051-panda.png",
-        cardTitle: "Panda",
-        cardIdentifier: "panda",
-    },
-    {
-        image: "images/051-pelican.png",
-        cardTitle: "Pelican",
-        cardIdentifier: "pelican",
-    },
-    {
-        image: "images/051-penguin.png",
-        cardTitle: "penguin",
-        cardIdentifier: "penguin",
-    },
-    {
-        image: "images/051-siberian-husky.png",
-        cardTitle: "Husky",
-        cardIdentifier: "husky",
-    },
-    {
-        image: "images/051-sloth.png",
-        cardTitle: "Sloth",
-        cardIdentifier: "sloth",
-    },
-    {
-        image: "images/051-tiger.png",
-        cardTitle: "Tiger",
-        cardIdentifier: "tiger",
-    },
-    {
-        image: "images/051-toucan.png",
-        cardTitle: "Toucan",
-        cardIdentifier: "toucan",
-        backgroundColor: "Blue"
-    },
-    {
-        image: "images/051-turtle.png",
-        cardTitle: "Turtle",
-        cardIdentifier: "turtle",
-    },
-    {
-        image: "images/pikachu.png",
-        cardTitle: "Pikachu",
-        cardIdentifier: "pikachu",
-    },
-    {
-        image: "images/051-bat.png",
-        cardTitle: "Bat",
-        cardIdentifier: "bat",
-    },
-    {
-        image: "images/051-beaver.png",
-        cardTitle: "Beaver",
-        cardIdentifier: "beaver",
-    },
-    {
-        image: "images/051-bee.png",
-        cardTitle: "Bee",
-        cardIdentifier: "bee",
-    },
-    {
-        image: "images/051-beetle.png",
-        cardTitle: "Beetle",
-        cardIdentifier: "beetle",
-    },
-    {
-        image: "images/051-camel.png",
-        cardTitle: "Camel",
-        cardIdentifier: "camel",
-    },
-    {
-        image: "images/051-canary.png",
-        cardTitle: "Canary",
-        cardIdentifier: "canary",
-    },
-    {
-        image: "images/051-cat.png",
-        cardTitle: "Cat",
-        cardIdentifier: "cat",
-    },
-    {
-        image: "images/051-chicken.png",
-        cardTitle: "Chicken",
-        cardIdentifier: "chicken",
-    },
-    {
-        image: "images/051-clown-fish.png",
-        cardTitle: "Fish",
-        cardIdentifier: "fish",
-    },
-    {
-        image: "images/051-cobra.png",
-        cardTitle: "Cobra",
-        cardIdentifier: "cobra",
-    },
-    {
-        image: "images/051-crab.png",
-        cardTitle: "Crab",
-        cardIdentifier: "crab",
-    },
-    {
-        image: "images/051-frog.png",
-        cardTitle: "Frog",
-        cardIdentifier: "frog",
-    },
-    {
-        image: "images/051-duck.png",
-        cardTitle: "Duck",
-        cardIdentifier: "duck",
-    },
-    {
-        image: "images/051-fox.png",
-        cardTitle: "Fox",
-        cardIdentifier: "fox",
-    },
-    {
-        image: "images/051-frog.png",
-        cardTitle: "Frog",
-        cardIdentifier: "frog",
-    }
-];
-const player1Info = document.getElementById("scoreboard__player1");
-const player2Info = document.getElementById("scoreboard__player2");
-const card = document.getElementsByClassName("contentcard__cards");
+// console.log(cardsList);
+
+const player1Info = document.getElementById("scoreboard__player1")
+const player2Info = document.getElementById("scoreboard__player2")
+const card = document.getElementsByClassName("contentcard__cards")
 let firstCard = null
 let secondCard = null
 let scoreGeneral = 0
 let activePlayer = 1
+let hasCards = false;
+let level = document.getElementById("level").value;
 let player1 = {
     description: 'Player 1',
     rounds: 0,
@@ -221,18 +66,22 @@ function disableCards() {
 }
 
 function clearSelectedCards() {
-    firstCard = null;
-    secondCard = null;
+    firstCard = null
+    secondCard = null
+    hasCards = false
 }
 
 function flip() {
+    if (hasCards) return
+
     if (firstCard == null) {
-        firstCard = this;
+        firstCard = this
     } else {
         if (this == firstCard) {
             return
         }
-        secondCard = this;
+        secondCard = this
+        hasCards = true
     }
     this.classList.toggle("card--flip");
 
@@ -251,7 +100,6 @@ function operativePlayer() {
 function inoperativePlayer() {
     player1Info.style.backgroundColor = "#DCDCDC";
     player2Info.style.backgroundColor = "#F5DEB3";
-
 }
 
 function unflip() {
@@ -270,6 +118,14 @@ for (let i = 0; i < card.length; i++) {
     }
 })()
 
+function randomCards() {
+    let randomNumber = Math.floor((Math.random() * cardsList.length))
+    let newCardsList = cardsList.splice(randomNumber, level)
+    console.log(newCardsList);
+}
+
+
+
 function changePlayer() {
     if (activePlayer == 1) {
         activePlayer = 2
@@ -278,16 +134,18 @@ function changePlayer() {
     }
 }
 
-function cardBuilder(cardsList) {
-    let contentcard = document.createElement("div");
-    let contentcard__cards = document.createElement("div");
-    let contentcard__cards__img = document.createElement("img");
-    contentcard.appendChild(contentcard__cards);
-    contentcard__cards.appendChild(contentcard__cards__img.classList)
-    contentcard.classList.add("contentcard")
-    contentcard__cards.classList.add("contentcard__cards")
-    contentcard__cards__img.classList.add("contentcard__cards__img")
-}
+// function cardBuilder(cardsList) {
+
+
+//     let contentcard = document.createElement("div");
+//     let contentcard__cards = document.createElement("div");
+//     let contentcard__cards__img = document.createElement("img");
+//     contentcard.appendChild(contentcard__cards);
+//     contentcard__cards.appendChild(contentcard__cards__img.classList)
+//     contentcard.classList.add("contentcard")
+//     contentcard__cards.classList.add("contentcard__cards")
+//     contentcard__cards__img.classList.add("contentcard__cards__img")
+// }
 
 
 // function addElement() {
@@ -303,4 +161,14 @@ function cardBuilder(cardsList) {
 //     document.body.insertBefore(newDiv, currentDiv);
 // }
 
+
+// ------
 // secondCard.classList.add("contentcard__cards--disabled")
+
+// (activePlayer == 1) ? checkForMatch(player1) : checkForMatch(player2);
+
+// const current = (activePlayer == 1) ? player1:player2
+// checkForMatch(current)
+
+// activePlayer= (activePlayer==1)? 2:1;
+// : senao
