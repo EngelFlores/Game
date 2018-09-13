@@ -1,13 +1,13 @@
 const cardsList = [
     {
-        image: "images/051-bulldog.png",
-        cardTitle: "The Bulldog",
-        cardIdentifier: "bulldog",
-    },
-    {
         image: "images/doubt.png",
         cardTitle: "The Doubt",
         cardIdentifier: "doubt",
+    },
+    {
+        image: "images/051-bulldog.png",
+        cardTitle: "The Bulldog",
+        cardIdentifier: "bulldog",
     },
     {
         image: "images/051-chameleon.png",

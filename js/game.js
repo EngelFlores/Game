@@ -1,5 +1,3 @@
-// console.log(cardsList);
-
 const player1Info = document.getElementById("scoreboard__player1")
 const player2Info = document.getElementById("scoreboard__player2")
 const card = document.getElementsByClassName("contentcard__cards")
@@ -8,7 +6,7 @@ let secondCard = null
 let scoreGeneral = 0
 let activePlayer = 1
 let hasCards = false;
-let level = document.getElementById("level").value;
+let levelForm = getLevelGame("level");
 let player1 = {
     description: 'Player 1',
     rounds: 0,
@@ -55,7 +53,7 @@ function checkWinner() {
 }
 
 function newGame() {
-    location.reload()
+    window.location.href = "../Game/level.html";
 }
 
 function disableCards() {
@@ -119,33 +117,45 @@ for (let i = 0; i < card.length; i++) {
 })()
 
 function randomCards() {
-    let randomNumber = Math.floor((Math.random() * cardsList.length))
+    let randomNumber = Math.floor((Math.random() * (cardsList.length / 2 + 1)))
+    let level = parseLevelForm();
     let newCardsList = cardsList.splice(randomNumber, level)
-    console.log(newCardsList);
+    let duplicatedCards = newCardsList.map(function (item) {
+        return [item, item];
+    }).reduce(function (newCardsList, b) { return newCardsList.concat(b) })
+    cardBuilder(duplicatedCards)
+}
+randomCards()
+
+function getLevelGame(levelGame) {
+    let query = window.location.search.substring(1);
+    let pair = query.split("=");
+    if (pair[0] == levelGame) {
+        return pair[1]
+    }
+    return (false);
 }
 
-
+function parseLevelForm() {
+    return parseInt(levelForm);
+}
 
 function changePlayer() {
-    if (activePlayer == 1) {
-        activePlayer = 2
-    } else {
-        activePlayer = 1
-    }
+    activePlayer = (activePlayer == 1) ? 2 : 1;
 }
 
-// function cardBuilder(cardsList) {
+function cardBuilder(duplicatedCards) {
+    let contentcard = document.createElement("div");
+    let contentcard__cards = document.createElement("div");
+    let contentcard__cards__img = document.createElement("img");
+    contentcard.appendChild(contentcard__cards);
+    contentcard__cards.appendChild(contentcard__cards__img.classList)
+    contentcard.classList.add("contentcard")
+    contentcard__cards.classList.add("contentcard__cards")
+    contentcard__cards__img.classList.add("contentcard__cards__img")
 
+}
 
-//     let contentcard = document.createElement("div");
-//     let contentcard__cards = document.createElement("div");
-//     let contentcard__cards__img = document.createElement("img");
-//     contentcard.appendChild(contentcard__cards);
-//     contentcard__cards.appendChild(contentcard__cards__img.classList)
-//     contentcard.classList.add("contentcard")
-//     contentcard__cards.classList.add("contentcard__cards")
-//     contentcard__cards__img.classList.add("contentcard__cards__img")
-// }
 
 
 // function addElement() {
