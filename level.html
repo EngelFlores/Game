@@ -11,14 +11,18 @@
 </head>
 
 <body>
-    <form action="game.html" id="level">
-        <input type="radio" value="6" name="level" id="easy">
+    <div class="selectlevel">
+        <img src="./images/chucky 4.gif" alt="Wanna play?" class="levelform__image">
+        <p>Select Level:</p>
+    </div>
+    <form action="game.html" id="level" class="levelform">
+        <input type="radio" value="6" name="level" id="easy" checked="checked">
         <label for="easy">Easy</label>
         <input type="radio" value="10" name="level" id="medium">
         <label for="medium">Medium</label>
         <input type="radio" value="15" name="level" id="hard">
         <label for="hard">Hard</label>
-        <input type="submit" value="Começar">
+        <input type="submit" value="Começar" class="levelform__button">
     </form>
 </body>
 

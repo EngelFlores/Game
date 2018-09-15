@@ -19,7 +19,6 @@ body{
     position: relative;
     transform-style: preserve-3d;
     transition: 1s;
-    
 }
 .contentcard__cards--back{
     background: #ffff;
@@ -55,6 +54,21 @@ body{
     font-size: 15px;
     border-radius:10px;
 }
+.levelform{
+    text-align: center;
+}
+.levelform__button{
+    margin-left: 10px;
+    border: 2px solid;
+    border-radius: 5px;
+}
+.levelform__image{
+    margin-top: 30px;
+    border-radius: 15px;
+}
+.selectlevel{
+    text-align: center;
+}
 .scoreboard{
     display: flex;
     flex-direction: row;
@@ -81,6 +95,9 @@ body{
 .contentcard__cards{
     width: 100px;
     height: 170px;
+}
+.levelform__image{
+    width: 100%
 }
 }
 @media(min-width: 1000px){

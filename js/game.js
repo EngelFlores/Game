@@ -1,6 +1,7 @@
 const player1Info = document.getElementById("scoreboard__player1")
 const player2Info = document.getElementById("scoreboard__player2")
-const card = document.getElementsByClassName("contentcard__cards")
+const memoryGameBoard = document.getElementById("memory-game")
+let cards;
 let firstCard = null
 let secondCard = null
 let scoreGeneral = 0
@@ -11,7 +12,7 @@ let player1 = {
     description: 'Player 1',
     rounds: 0,
     score: 0
-}
+} 
 let player2 = {
     description: 'Player 2',
     rounds: 0,
@@ -40,7 +41,7 @@ function checkForMatch(player) {
 }
 
 function checkWinner() {
-    if (scoreGeneral == (card.length / 2)) {
+    if (scoreGeneral == (cards.length / 2)) {
         if (player1.score > player2.score) {
             winner = player1.description
         } else if (player2.score > player1.score) {
@@ -106,15 +107,12 @@ function unflip() {
     clearSelectedCards();
 }
 
-for (let i = 0; i < card.length; i++) {
-    card[i].addEventListener("click", flip);
-}
-
-(function random() {
-    for (let i = 0; i < card.length; i++) {
-        card[i].style.order = Math.floor((Math.random() * card.length));
+function randomizeCards() {
+    cards = document.getElementsByClassName("contentcard__cards")
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].style.order = Math.floor((Math.random() * cards.length));
     }
-})()
+}
 
 function randomCards() {
     let randomNumber = Math.floor((Math.random() * (cardsList.length / 2 + 1)))
@@ -123,9 +121,17 @@ function randomCards() {
     let duplicatedCards = newCardsList.map(function (item) {
         return [item, item];
     }).reduce(function (newCardsList, b) { return newCardsList.concat(b) })
-    cardBuilder(duplicatedCards)
+    
+    duplicatedCards.forEach(createCard)
 }
 randomCards()
+randomizeCards()
+
+function createCard (card) {
+    let generatedCard = cardBuilder(card);
+    generatedCard.addEventListener("click", flip);
+    memoryGameBoard.appendChild(generatedCard)
+}
 
 function getLevelGame(levelGame) {
     let query = window.location.search.substring(1);
@@ -144,32 +150,29 @@ function changePlayer() {
     activePlayer = (activePlayer == 1) ? 2 : 1;
 }
 
-function cardBuilder(duplicatedCards) {
-    let contentcard = document.createElement("div");
-    let contentcard__cards = document.createElement("div");
-    let contentcard__cards__img = document.createElement("img");
-    contentcard.appendChild(contentcard__cards);
-    contentcard__cards.appendChild(contentcard__cards__img.classList)
-    contentcard.classList.add("contentcard")
-    contentcard__cards.classList.add("contentcard__cards")
-    contentcard__cards__img.classList.add("contentcard__cards__img")
+function cardBuilder(card) {
+
+    let newCard = document.createElement("div");
+    newCard.className = 'contentcard__cards'
+    newCard.dataset.card = card.cardIdentifier
+
+    let front = document.createElement("img");
+    front.src = "images/doubt.png"
+    front.className = 'contentcard__cards__img contentcard__cards--front'
+    newCard.appendChild(front)
+
+    let back = document.createElement("img");
+    back.src = card.image
+    back.className = 'contentcard__cards__img contentcard__cards--back'
+    newCard.appendChild(back)
+
+    return newCard
 
 }
 
 
 
-// function addElement() {
-//     // create a new div element 
-//     var newDiv = document.createElement("div");
-//     // and give it some content 
-//     var newContent = document.createTextNode("Hi there and greetings!");
-//     // add the text node to the newly created div
-//     newDiv.appendChild(newContent);
 
-//     // add the newly created element and its content into the DOM 
-//     var currentDiv = document.getElementById("div1");
-//     document.body.insertBefore(newDiv, currentDiv);
-// }
 
 
 // ------
