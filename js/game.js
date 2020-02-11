@@ -54,7 +54,7 @@ function checkWinner() {
 }
 
 function newGame() {
-    window.location.href = "../Game/level.html";
+    window.location.href = "./level.html";
 }
 
 function disableCards() {
@@ -136,10 +136,7 @@ function createCard (card) {
 function getLevelGame(levelGame) {
     let query = window.location.search.substring(1);
     let pair = query.split("=");
-    if (pair[0] == levelGame) {
-        return pair[1]
-    }
-    return (false);
+    return pair[0] == levelGame ? pair[1] : false
 }
 
 function parseLevelForm() {
@@ -169,19 +166,3 @@ function cardBuilder(card) {
     return newCard
 
 }
-
-
-
-
-
-
-// ------
-// secondCard.classList.add("contentcard__cards--disabled")
-
-// (activePlayer == 1) ? checkForMatch(player1) : checkForMatch(player2);
-
-// const current = (activePlayer == 1) ? player1:player2
-// checkForMatch(current)
-
-// activePlayer= (activePlayer==1)? 2:1;
-// : senao
